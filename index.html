@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metabolic Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            align-self: flex-start.
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #008080;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .hidden {
+            display: none;
+        }
+        .circle-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-bottom: 20px;
+            margin-top: 40px;
+        }
+        .circle {
+            background-color: #008080;
+            color: #ffffff;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+            border: 2px solid #FFD700;
+        }
+        .circle span {
+            font-weight: normal;
+            font-size: 14px.
+        }
+        .result-box {
+            border: 2px solid #008080;
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between.
+        }
+        .result-box-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px.
+        }
+        .result-box button {
+            background-color: #FFD700;
+            color: #000000;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-weight: bold.
+        }
+        .result-box img {
+            width: 110px;
+            height: 110px;
+            border-radius: 10px.
+        }
+        .highlight {
+            background-color: #008080;
+            color: #ffffff;
+            padding: 5px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block.
+        }
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px.
+        }
+        .small-button {
+            padding: 5px 10px;
+            background-color: #008080;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            align-self: flex-end.
+        }
+        .logo {
+            display: block;
+            margin: 0 auto 20px auto;
+            width: 50px;
+            height: auto.
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="form-container">
+        <h1>Metabolic Calculator</h1>
+        <form id="metabolic-form">
+            <label for="sex">Sex:</label>
+            <select id="sex" name="sex">
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+            </select>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age">
+            <label for="weight">Weight (in lbs):</label>
+            <input type="number" id="weight" name="weight">
+            <label for="height">Height (in inches):</label>
+            <input type="number" id="height" name="height">
+            <label for="activity">Physical Activity Level:</label>
+            <select id="activity" name="activity">
+                <option value="sedentary">Sedentary</option>
+                <option value="lightly_active">Lightly Active</option>
+                <option value="moderately_active">Moderately Active</option>
+                <option value="very_active">Very Active</option>
+                <option value="extremely_active">Extremely Active</option>
+            </select>
+            <label for="goal">How many lbs do you want to lose?</label>
+            <input type="number" id="goal" name="goal">
+            <button type="button" onclick="calculateResults()">Continue to Results</button>
+        </form>
+    </div>
+    <div class="container hidden" id="results-container">
+        <h1>Your Metabolism</h1>
+        <div class="circle-container">
+            <div class="circle" id="bmr"><strong></strong><span>BMR</span></div>
+            <div class="circle" id="maintenance"><strong></strong><span>Maintenance</span></div>
+            <div class="circle" id="deficit"><strong></strong><span>Deficit 500</span></div>
+            <div class="circle" id="bmi"><strong></strong><span>BMI</span></div>
+        </div>
+        <div class="result-box-container">
+            <div class="result-box">
+                <img src="images/imgprog1500.png" alt="1500 Program">
+                <div>
+                    <p>With the <strong>4-week Challenge</strong> you'll reach your goal in <span id="goal-1500" class="highlight"></span>.</p>
+                    <button class="buy-button" onclick="window.open('https://taplink.cc/kcoaching/d/1500en30jours/', '_blank')">Buy Now</button>
+                </div>
+            </div>
+            <div class="result-box">
+                <img src="images/imgprog1400.png" alt="1400 Program">
+                <div>
+                    <p>With the <strong>14-day Challenge</strong> you'll reach your goal in <span id="goal-1400" class="highlight"></span>.</p>
+                    <button class="buy-button" onclick="window.open('https://taplink.cc/kcoaching/d/140014jours/', '_blank')">Buy Now</button>
+                </div>
+            </div>
+        </div>
+        <div class="button-container">
+            <button class="small-button" onclick="returnToForm()">Return to Form</button>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function calculateResults() {
+            // Retrieve form values
+            const sex = document.getElementById('sex').value;
+            const age = parseFloat(document.getElementById('age').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const activity = document.getElementById('activity').value;
+            const goal = parseFloat(document.getElementById('goal').value);
+
+            // Debug: Log extracted values
+            console.log("Sex: " + sex);
+            console.log("Age: " + age);
+            console.log("Weight (lbs): " + weight);
+            console.log("Height (in): " + height);
+            console.log("Activity Level: " + activity);
+            console.log("Goal (lbs): " + goal);
+
+            // Calculate BMR using the provided formulas
+            const bmr = sex === 'male' ? 
+                66.47 + (6.24 * weight) + (12.7 * height) - (6.76 * age) : 
+                655 + (4.35 * weight) + (4.7 * height) - (4.7 * age);
+
+            // Debug: Log BMR calculation
+            console.log("BMR: " + bmr);
+
+            // Calculate maintenance calories
+            const maintenance = bmr * (activity === 'sedentary' ? 1.2 : 
+                activity === 'lightly_active' ? 1.375 : 
+                activity === 'moderately_active' ? 1.55 : 
+                activity === 'very_active' ? 1.725 : 
+                1.9);
+
+            // Debug: Log maintenance calculation
+            console.log("Maintenance Calories: " + maintenance);
+
+            // Calculate deficit of 500 calories
+            const deficit500 = maintenance - 500;
+
+            // Debug: Log deficit calculation
+            console.log("Deficit 500 Calories: " + deficit500);
+
+            // Calculate BMI
+            const bmi = (weight / (height ** 2)) * 703;
+
+            // Debug: Log BMI calculation
+            console.log("BMI: " + bmi);
+
+            // Calculate weight loss goals
+            const weightLoss1500 = ((maintenance - 1500) * 30 / 3500).toFixed(1);
+            const weightLoss1400 = ((maintenance - 1400) * 30 / 3500).toFixed(1);
+            const goal1500 = (goal / weightLoss1500).toFixed(1);
+            const goal1400 = (goal / weightLoss1400).toFixed(1);
+
+            // Display results
+            document.getElementById('bmr').querySelector('strong').innerText = Math.round(bmr);
+            document.getElementById('maintenance').querySelector('strong').innerText = Math.round(maintenance);
+            document.getElementById('deficit').querySelector('strong').innerText = Math.round(deficit500);
+            document.getElementById('bmi').querySelector('strong').innerText = Math.round(bmi);
+            document.getElementById('goal-1500').innerText = goal1500 + ' months';
+            document.getElementById('goal-1400').innerText = goal1400 + ' months';
+
+            // Hide form and show results
+            document.getElementById('form-container').classList.add('hidden');
+            document.getElementById('results-container').classList.remove('hidden');
+        }
+
+        function returnToForm() {
+            // Hide results and show form
+            document.getElementById('results-container').classList.add('hidden');
+            document.getElementById('form-container').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
+
