@@ -33,7 +33,9 @@
         label {
             font-weight: bold;
             margin-top: 10px;
-            align-self: flex-start.
+            align-self: flex-start;
+            text-align: left;
+            width: 100%;
         }
         input, select {
             width: 100%;
@@ -67,20 +69,20 @@
             background-color: #008080;
             color: #ffffff;
             border-radius: 50%;
-            width: 100px;
-            height: 100px;
+            width: 150px; /* Taille augmentée */
+            height: 150px; /* Taille augmentée */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             font-weight: bold;
-            font-size: 20px;
+            font-size: 22px; /* Taille de police augmentée */
             border: 2px solid #FFD700;
         }
         .circle span {
             font-weight: normal;
-            font-size: 14px.
+            font-size: 14px;
         }
         .result-box {
             border: 2px solid #008080;
@@ -91,12 +93,12 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content: space-between.
+            justify-content: space-between;
         }
         .result-box-container {
             display: flex;
             flex-direction: column;
-            gap: 10px.
+            gap: 10px;
         }
         .result-box button {
             background-color: #FFD700;
@@ -105,12 +107,12 @@
             padding: 10px 20px;
             margin-top: 10px;
             cursor: pointer;
-            font-weight: bold.
+            font-weight: bold;
         }
         .result-box img {
             width: 110px;
             height: 110px;
-            border-radius: 10px.
+            border-radius: 10px;
         }
         .highlight {
             background-color: #008080;
@@ -118,12 +120,12 @@
             padding: 5px;
             border-radius: 5px;
             font-weight: bold;
-            display: inline-block.
+            display: inline-block;
         }
         .button-container {
             display: flex;
             justify-content: flex-end;
-            gap: 10px.
+            gap: 10px;
         }
         .small-button {
             padding: 5px 10px;
@@ -134,13 +136,13 @@
             cursor: pointer;
             font-weight: bold;
             margin-top: 20px;
-            align-self: flex-end.
+            align-self: flex-end;
         }
         .logo {
             display: block;
             margin: 0 auto 20px auto;
             width: 50px;
-            height: auto.
+            height: auto;
         }
     </style>
 </head>
@@ -231,7 +233,7 @@
             const maintenance = bmr * (activity === 'sedentary' ? 1.2 : 
                 activity === 'lightly_active' ? 1.375 : 
                 activity === 'moderately_active' ? 1.55 : 
-                activity === 'very_active' ? 1.725 : 
+                                activity === 'very_active' ? 1.725 : 
                 1.9);
 
             // Debug: Log maintenance calculation
@@ -276,4 +278,3 @@
     </script>
 </body>
 </html>
-
